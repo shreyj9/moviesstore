@@ -62,10 +62,3 @@ def delete_review(request, id, review_id):
     review.delete()
     return redirect('movies.show', id=id)
 
-def top_comments(request):
-    reviews = Review.objects.select_related('movie', 'user').all()
-
-    template_data = {}
-    template_data['title'] = 'Top Comments'
-    template_data['reviews'] = reviews
-    return render(request, 'movies/top_comments.html', {'template_data': template_data})
